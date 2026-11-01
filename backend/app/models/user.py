@@ -6,6 +6,8 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
 
+from sqlalchemy.orm import relationship
+
 
 class User(Base):
     __tablename__ = "users"
@@ -18,7 +20,11 @@ class User(Base):
         index=True,
         nullable=False,
     )
-
+    documents = relationship(
+        "Document",
+        back_populates="owner",
+        cascade="all, delete-orphan",
+    )
     full_name: Mapped[str] = mapped_column(
         String(100),
         nullable=False,
@@ -39,4 +45,9 @@ class User(Base):
         DateTime(timezone=True),
         server_default=func.now(),
         nullable=False,
+    )
+    conversations = relationship(
+        "Conversation",
+        back_populates="owner",
+        cascade="all, delete-orphan",
     )

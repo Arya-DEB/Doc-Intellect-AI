@@ -6,6 +6,10 @@ from sqlalchemy import engine_from_config, pool
 from app.core.config import get_settings
 from app.core.database import Base
 from app.models import User  # noqa: F401
+from app.models.document_chunk import DocumentChunk
+from app.models.user import User
+from app.models.document import Document
+from app.models.chat import Conversation, ChatMessage
 
 config = context.config
 
@@ -22,7 +26,7 @@ config.set_main_option(
 target_metadata = Base.metadata
 
 
-def run_migrations_offline() -> None:
+def run_migrations_offline() -> None:  
     context.configure(
         url=config.get_main_option("sqlalchemy.url"),
         target_metadata=target_metadata,

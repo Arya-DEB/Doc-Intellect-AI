@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #171735;
+  background: #f8f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+.chat-markdown {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3 {
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+}
+
+.chat-markdown p {
+  margin: 0.5rem 0;
+}
+
+.chat-markdown ul,
+.chat-markdown ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.chat-markdown li {
+  margin: 0.25rem 0;
+}
+
+.chat-markdown strong {
+  font-weight: 700;
+}
+
+.chat-markdown code {
+  background: #f1f5f9;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.chat-markdown pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.chat-markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.chat-markdown blockquote {
+  border-left: 3px solid #94a3b8;
+  padding-left: 1rem;
+  color: #64748b;
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.logo-node {
+  animation: logo-pulse 1.8s ease-in-out infinite;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-node {
+    animation: none;
+  }
+}
