@@ -1,0 +1,13 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.1",
+  "base_commit_sha": "7bcda11e50989fe42da466d93ee598683a45d841",
+  "branch": "main",
+  "prompts": {},
+  "humans": {
+    "h_3014f1baa5f331": {
+      "author": "Arya Deb <aryadeb2005@gmail.com>"
+    }
+  }
+}
