@@ -43,7 +43,9 @@ def retrieve_node(state: RAGState, config: RunnableConfig) -> RAGState:
         question=search_query,
         user_id=state["user_id"],
         top_k=state.get("top_k", 3),
+        document_id=state.get("document_id"),
     )
+
     return {"chunks": chunks}
 
 

@@ -22,3 +22,11 @@ export async function getDocumentUrl(id) {
   const { data } = await api.get(`/documents/${id}/file`);
   return data.url;
 }
+
+export async function getDocumentPdfBlob(id) {
+  const response = await api.get(`/documents/${id}/view`, {
+    responseType: "blob",
+  });
+
+  return response.data;
+}

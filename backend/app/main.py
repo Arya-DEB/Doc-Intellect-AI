@@ -37,6 +37,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins_list,
@@ -44,6 +45,36 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
 )
+@app.get("/", tags=["Health"])
+def home():
+    return {
+        "message": "Welcome to Doc Intellect AI API",
+        "status": "running",
+        "docs": "/docs",
+    }
+
+@app.get("/health", tags=["Health"])
+def health_check():
+    try:
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+
+        return {
+            "status": "healthy",
+            "database": "connected",
+        }
+
+    except Exception:
+        logger.exception("Health check failed")
+
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "unhealthy",
+                "database": "disconnected",
+            },
+        )
+
 
 app.include_router(auth.router)
 app.include_router(users.router)

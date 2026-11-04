@@ -214,7 +214,11 @@ def get_document_file(
     return {
         "document_id": document.id,
         "filename": document.filename,
-        "url": get_signed_pdf_url(document.file_path, SIGNED_URL_TTL_SECONDS),
+        "url": get_signed_pdf_url(
+            document.file_path,
+            SIGNED_URL_TTL_SECONDS,
+            attachment=False,
+        ),
         "expires_in": SIGNED_URL_TTL_SECONDS,
     }
 

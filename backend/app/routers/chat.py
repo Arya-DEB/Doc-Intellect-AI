@@ -1,12 +1,16 @@
+import logging
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.graphs.rag_graph import rag_graph
 from app.core.database import get_db
+from app.core.dependencies import get_current_user
 from app.models.user import User
 from app.models.chat import Conversation, ChatMessage
 from app.schemas.qa import QuestionRequest, QuestionResponse
-from app.core.dependencies import get_current_user
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(
     prefix="/chat",
@@ -24,7 +28,8 @@ def ask_question(
     if request.conversation_id is None:
         conversation = Conversation(
             user_id=current_user.id,
-            title=request.question[:80],
+            title=request.question[:255],
+            document_id=request.document_id,
         )
         db.add(conversation)
         db.commit()
@@ -46,6 +51,13 @@ def ask_question(
                 detail="Conversation not found",
             )
 
+        # Ensure this conversation belongs to the requested document
+        if conversation.document_id != request.document_id:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Conversation does not belong to this document",
+            )
+
     # Save the user's question
     user_message = ChatMessage(
         conversation_id=conversation.id,
@@ -61,6 +73,7 @@ def ask_question(
                 "question": request.question,
                 "user_id": current_user.id,
                 "top_k": request.top_k,
+                "document_id": request.document_id,
             },
             config={
                 "configurable": {
@@ -85,6 +98,7 @@ def ask_question(
 
     except Exception:
         db.rollback()
+        logger.exception("Failed to generate answer")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to generate answer",

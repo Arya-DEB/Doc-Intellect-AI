@@ -23,6 +23,7 @@ def retrieve_relevant_chunks(
         DocumentChunk.user_id == user_id,
     )
 
+    # Restrict retrieval to the selected document when provided
     if document_id is not None:
         statement = statement.where(
             DocumentChunk.document_id == document_id

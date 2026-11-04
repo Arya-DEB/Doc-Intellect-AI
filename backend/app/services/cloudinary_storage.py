@@ -11,15 +11,19 @@ logger = logging.getLogger(__name__)
 CLOUDINARY_FOLDER = "doc-intellect"
 
 
-def get_signed_pdf_url(public_id: str, expires_in: int = 300) -> str:
-    """Time-limited download URL for a private (authenticated) raw PDF."""
+def get_signed_pdf_url(
+    public_id: str,
+    expires_in: int = 300,
+    attachment: bool = True,
+) -> str:
+    """Time-limited URL for a private authenticated PDF."""
     return cloudinary.utils.private_download_url(
-        public_id,          # keep the ".pdf" for raw assets
-        "",                 # no separate format
+        public_id,
+        "",
         resource_type="raw",
         type="authenticated",
         expires_at=int(time.time()) + expires_in,
-        attachment=True,
+        attachment=attachment,
     )
 
 def upload_pdf(

@@ -12,4 +12,4 @@ wheels/
 .env
 
 # Local environment variables and sensitive keys
-.env
+# .env
