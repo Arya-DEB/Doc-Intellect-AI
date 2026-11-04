@@ -1,0 +1,15 @@
+.dockerignore
+  h_3014f1baa5f331 1-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.1",
+  "base_commit_sha": "5e553c9c163645101da14f4601703456d7018de9",
+  "branch": "main",
+  "prompts": {},
+  "humans": {
+    "h_3014f1baa5f331": {
+      "author": "Arya Deb <aryadeb2005@gmail.com>"
+    }
+  }
+}
