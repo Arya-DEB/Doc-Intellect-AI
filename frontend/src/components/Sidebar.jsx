@@ -6,7 +6,7 @@ import {
   Settings,
   LogOut,
   X,
-  Sun,
+  Sun, 
   Moon,
 } from "lucide-react";
 import Logo from "./logo.jsx";
