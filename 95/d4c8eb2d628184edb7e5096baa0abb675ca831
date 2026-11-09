@@ -1,0 +1,17 @@
+Readme
+  h_3014f1baa5f331 1-633
+frontend/.env
+  h_3014f1baa5f331 2-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "autter_version": "2.2.1",
+  "base_commit_sha": "95d4c8eb2d628184edb7e5096baa0abb675ca831",
+  "branch": "main",
+  "prompts": {},
+  "humans": {
+    "h_3014f1baa5f331": {
+      "author": "Arya Deb <aryadeb2005@gmail.com>"
+    }
+  }
+}
